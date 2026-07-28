@@ -20,10 +20,6 @@ export default function Home() {
       .map(([family]) => family);
   }, []);
 
-  const featuredPlant = useMemo(() => {
-    return mockPlants.find(p => p.metabolites.length >= 3) || mockPlants[0];
-  }, []);
-
   const filteredPlants = useMemo(() => {
     return mockPlants.filter(p => {
       const matchesSearch = 
@@ -38,59 +34,44 @@ export default function Home() {
     });
   }, [search, selectedFamily]);
 
-  const totalMetabolites = useMemo(() => {
-    return mockPlants.reduce((acc, p) => acc + p.metabolites.length, 0);
-  }, []);
-
   return (
-    <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-6 space-y-10 pb-20">
+    <div className="w-full space-y-10 pb-20">
       
       {/* Full-Width Curved Hero Header */}
-      <section className="relative w-full overflow-hidden rounded-[2.5rem] bg-stone-900 text-stone-100 p-6 sm:p-12 shadow-2xl border border-emerald-900/30">
-        
-        {/* Background Ambient Glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[120px] pointer-events-none" />
-
+      <section className="relative w-full overflow-hidden rounded-[2.5rem] bg-stone-900/90 text-stone-100 p-6 sm:p-12 border border-emerald-900/30 shadow-2xl">
         <div className="relative z-10 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md text-emerald-300 text-xs font-semibold">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-xs font-semibold">
             <Leaf className="h-4 w-4 text-emerald-400" />
             <span>HITS Department of Biotechnology</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
             Campus Flora <br />
             <span className="bg-gradient-to-r from-emerald-400 via-teal-200 to-amber-200 bg-clip-text text-transparent italic font-serif">
               Phytochemical Archive
             </span>
           </h1>
-
-          <p className="text-stone-300 text-xs sm:text-sm leading-relaxed max-w-3xl font-light">
-            Cataloging <span className="text-emerald-300 font-bold">{mockPlants.length} plant species</span> and <span className="text-amber-300 font-bold">{totalMetabolites} bioactive secondary metabolites</span> across the HITS campus.
-          </p>
         </div>
 
-        {/* Full-Width Capsule Search & Filter Bar */}
+        {/* Search & Filters */}
         <div className="relative z-10 mt-8">
-          <div className="p-2 sm:p-3 rounded-full bg-stone-950/80 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col md:flex-row gap-3 items-center">
-            
+          <div className="p-2 sm:p-3 rounded-full bg-stone-950/90 border border-stone-800 shadow-2xl flex flex-col md:flex-row gap-3 items-center">
             <div className="relative w-full flex-grow pl-4">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-stone-400 h-4 w-4" />
               <input
                 type="text"
-                placeholder="Search species, family, or phytochemical compound (e.g., Quercetin)..."
+                placeholder="Search species, family, or phytochemical compound..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-8 pr-4 py-3 bg-transparent text-xs sm:text-sm text-white focus:outline-none placeholder:text-stone-400"
               />
             </div>
 
-            {/* Pill Filters */}
-            <div className="flex items-center space-x-2 overflow-x-auto w-full md:w-auto px-2 pb-1 md:pb-0 scrollbar-none shrink-0">
+            <div className="flex items-center space-x-2 overflow-x-auto w-full md:w-auto px-2 shrink-0">
               <button
                 onClick={() => setSelectedFamily('ALL')}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedFamily === 'ALL' ? 'bg-emerald-400 text-stone-950 shadow-lg shadow-emerald-400/20 scale-105' : 'bg-white/5 text-stone-300 hover:bg-white/10'
+                  selectedFamily === 'ALL' ? 'bg-emerald-400 text-stone-950' : 'bg-white/5 text-stone-300 hover:bg-white/10'
                 }`}
               >
                 All Species
@@ -100,112 +81,62 @@ export default function Home() {
                   key={fam}
                   onClick={() => setSelectedFamily(fam)}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                    selectedFamily === fam ? 'bg-emerald-400 text-stone-950 shadow-lg shadow-emerald-400/20 scale-105' : 'bg-white/5 text-stone-300 hover:bg-white/10'
+                    selectedFamily === fam ? 'bg-emerald-400 text-stone-950' : 'bg-white/5 text-stone-300 hover:bg-white/10'
                   }`}
                 >
                   {fam}
                 </button>
               ))}
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Featured Specimen Section */}
-      {featuredPlant && !search && selectedFamily === 'ALL' && (
-        <section className="relative w-full overflow-hidden rounded-[2.5rem] bg-stone-900/90 text-white p-6 sm:p-10 border border-stone-800 shadow-xl">
-          <div className="flex flex-col lg:flex-row items-center gap-8">
-            
-            <div className="w-full lg:w-5/12 h-64 sm:h-80 rounded-[2rem] overflow-hidden relative group shrink-0 border border-emerald-500/20">
-              <PlantImage src={featuredPlant.image} alt={featuredPlant.commonName} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
-              <span className="absolute top-4 left-4 px-3.5 py-1.5 bg-amber-400 text-stone-950 text-[10px] font-black uppercase rounded-full tracking-wider flex items-center shadow-lg">
-                <Sparkles className="h-3 w-3 inline mr-1" />
-                Featured Specimen
-              </span>
-            </div>
-
-            <div className="w-full lg:w-7/12 space-y-4">
-              <div>
-                <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest">{featuredPlant.family}</span>
-                <h2 className="text-3xl sm:text-4xl font-serif italic text-white mt-1">
-                  {featuredPlant.scientificName}
-                </h2>
-                <p className="text-stone-400 text-sm font-medium mt-0.5">{featuredPlant.commonName}</p>
-              </div>
-
-              <p className="text-stone-300 text-xs sm:text-sm leading-relaxed line-clamp-3 font-light">
-                {featuredPlant.description}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <div className="px-4 py-2 rounded-2xl bg-stone-800 border border-stone-700/60 text-xs font-bold text-amber-300 flex items-center space-x-2">
-                  <Dna className="h-4 w-4 text-amber-400" />
-                  <span>{featuredPlant.metabolites.length} Bioactive Compounds</span>
-                </div>
-
-                <Link
-                  to={`/plant/${featuredPlant.id}`}
-                  className="px-6 py-2.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-stone-950 font-bold text-xs transition-all flex items-center space-x-1.5 shadow-xl shadow-emerald-400/20"
-                >
-                  <span>Explore Specimen</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      )}
-
-      {/* Responsive Grid Across Full Screen Width */}
+      {/* Catalog Grid with Proportional Cards */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between px-2">
-          <div className="flex items-center space-x-2">
-            <SlidersHorizontal className="h-4 w-4 text-emerald-500" />
-            <h2 className="text-base font-bold text-stone-800 dark:text-stone-200 tracking-tight">
-              Catalog Collection ({filteredPlants.length} Species)
-            </h2>
-          </div>
+        <div className="flex items-center space-x-2 px-2">
+          <SlidersHorizontal className="h-4 w-4 text-emerald-500" />
+          <h2 className="text-base font-bold text-stone-200 tracking-tight">
+            Catalog Collection ({filteredPlants.length} Species)
+          </h2>
         </div>
 
-        {/* Dynamic 5 to 6 column grid on wide screens to fill full viewport */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+        {/* Responsive, non-squished card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {filteredPlants.slice(0, visibleCount).map(plant => (
             <div 
               key={plant.id} 
-              className="group bg-white dark:bg-stone-900 rounded-[2rem] p-3 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-stone-100 dark:border-stone-800 flex flex-col justify-between"
+              className="group bg-stone-900 rounded-[2rem] p-3.5 border border-stone-800/80 hover:border-emerald-500/40 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Image Frame */}
-              <div className="relative h-56 w-full rounded-[1.5rem] overflow-hidden">
-                <PlantImage src={plant.image} alt={plant.commonName} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
+              {/* Natural Aspect Image Container */}
+              <div className="relative h-48 w-full rounded-[1.5rem] overflow-hidden bg-stone-950">
+                <PlantImage src={plant.image} alt={plant.commonName} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
                 
-                <span className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-500/20">
+                <span className="absolute top-3 left-3 px-3 py-1 bg-stone-950/80 backdrop-blur-md text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/20">
                   {plant.family}
                 </span>
 
-                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/70 backdrop-blur-md text-amber-300 text-[10px] font-extrabold rounded-full flex items-center border border-amber-400/20">
-                  <Dna className="h-3 w-3 mr-1" />
+                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-stone-950/80 backdrop-blur-md text-amber-300 text-[10px] font-extrabold rounded-full flex items-center border border-amber-400/20">
+                  <Dna className="h-3 w-3 mr-1 text-amber-400" />
                   {plant.metabolites.length}
                 </span>
               </div>
 
-              {/* Plant Details */}
-              <div className="p-4 space-y-3 flex-grow flex flex-col justify-between">
+              {/* Text content with clean spacing */}
+              <div className="pt-4 pb-1 px-1 space-y-3 flex-grow flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif italic text-base font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-500 transition-colors line-clamp-1">
+                  <h3 className="font-serif italic text-base font-bold text-stone-100 group-hover:text-emerald-400 transition-colors">
                     {plant.scientificName}
                   </h3>
-                  <p className="text-stone-500 dark:text-stone-400 text-xs font-medium mt-0.5 line-clamp-1">
+                  <p className="text-stone-400 text-xs font-medium mt-1">
                     {plant.commonName}
                   </p>
                 </div>
 
                 <Link 
                   to={`/plant/${plant.id}`}
-                  className="w-full flex items-center justify-between bg-stone-100 dark:bg-stone-800 hover:bg-emerald-400 hover:text-stone-950 text-stone-700 dark:text-stone-200 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all"
+                  className="w-full flex items-center justify-between bg-stone-800/80 hover:bg-emerald-400 hover:text-stone-950 text-stone-200 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all mt-2"
                 >
                   <span>Explore Specimen</span>
                   <Eye className="h-3.5 w-3.5" />
@@ -215,12 +146,11 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Load More Button */}
         {visibleCount < filteredPlants.length && (
-          <div className="text-center pt-10">
+          <div className="text-center pt-8">
             <button 
               onClick={() => setVisibleCount(prev => prev + 20)}
-              className="px-8 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-stone-950 font-bold text-xs rounded-full transition-all shadow-2xl shadow-emerald-400/20 scale-105"
+              className="px-8 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-stone-950 font-bold text-xs rounded-full transition-all shadow-xl shadow-emerald-400/20"
             >
               Load More Species ({filteredPlants.length - visibleCount} Remaining)
             </button>
