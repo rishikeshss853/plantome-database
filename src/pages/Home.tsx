@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, Leaf, ChevronRight, Dna, Database } from 'lucide-react';
+import { Search, Sparkles, Leaf, ChevronRight, Dna, Compass, ArrowUpRight } from 'lucide-react';
 import { mockPlants } from '../data';
 import PlantImage from '../components/PlantImage';
 
 export default function Home() {
   const [search, setSearch] = useState('');
   const [selectedFamily, setSelectedFamily] = useState<string>('ALL');
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(16);
 
   const topFamilies = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -16,8 +16,12 @@ export default function Home() {
     });
     return Object.entries(counts)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 8)
+      .slice(0, 7)
       .map(([family]) => family);
+  }, []);
+
+  const featuredPlant = useMemo(() => {
+    return mockPlants.find(p => p.metabolites.length > 3) || mockPlants[0];
   }, []);
 
   const filteredPlants = useMemo(() => {
@@ -39,141 +43,184 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10 pb-16">
       
-      {/* Premium Dark Hero Header */}
-      <section className="bg-gradient-to-r from-emerald-950 via-teal-950 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-800/40 relative overflow-hidden">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
-          
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
-              <Leaf className="h-3.5 w-3.5" />
-              <span>HITS Department of Biotechnology</span>
-            </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-              Campus Flora Phytochemical Portal
-            </h1>
-            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
-              Explore {mockPlants.length} cataloged campus plant species along with {totalMetabolites} bioactive secondary metabolites, SMILES structure keys, and PubChem IDs.
-            </p>
+      {/* Curved Modern Hero Header */}
+      <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-950 via-stone-900 to-teal-950 text-white p-8 sm:p-12 shadow-2xl border border-emerald-800/30">
+        
+        {/* Soft Ambient Background Glow Blobs */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-3xl space-y-4">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md text-emerald-300 text-xs font-semibold">
+            <Leaf className="h-3.5 w-3.5 text-emerald-400" />
+            <span>HITS Department of Biotechnology</span>
           </div>
 
-          {/* Quick Metrics Badge */}
-          <div className="flex items-center space-x-4 bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shrink-0">
-            <div>
-              <p className="text-2xl font-black text-emerald-400">{mockPlants.length}</p>
-              <p className="text-[10px] text-stone-300 uppercase font-bold">Species</p>
-            </div>
-            <div className="h-8 w-px bg-white/20" />
-            <div>
-              <p className="text-2xl font-black text-amber-300">{totalMetabolites}</p>
-              <p className="text-[10px] text-stone-300 uppercase font-bold">Metabolites</p>
-            </div>
-          </div>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            Campus Flora <br />
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-200 bg-clip-text text-transparent">
+              Phytochemical Portal
+            </span>
+          </h1>
 
+          <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-light">
+            An open research repository cataloging {mockPlants.length} plant species and {totalMetabolites} isolated bioactive compounds across the HITS campus.
+          </p>
         </div>
 
-        {/* Integrated Search & Filter Row */}
-        <div className="mt-6 pt-5 border-t border-emerald-800/50 flex flex-col md:flex-row gap-3 items-center justify-between">
-          <div className="relative w-full md:w-1/2">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 h-4 w-4" />
-            <input
-              type="text"
-              placeholder="Search plant name, family, or compound (e.g., Quercetin)..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl bg-stone-900/90 border border-emerald-700/50 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-stone-400"
-            />
-          </div>
+        {/* Floating Curved Search Capsule */}
+        <div className="relative z-10 mt-8">
+          <div className="p-2 rounded-2xl bg-stone-900/80 backdrop-blur-xl border border-white/10 shadow-xl flex flex-col md:flex-row gap-2 items-center">
+            
+            <div className="relative w-full flex-grow">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 h-4 w-4" />
+              <input
+                type="text"
+                placeholder="Search by botanical name, family, or metabolite (e.g. Quercetin)..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-transparent text-xs text-white focus:outline-none placeholder:text-stone-400"
+              />
+            </div>
 
-          {/* Quick Family Filter Buttons */}
-          <div className="flex items-center space-x-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none text-xs">
-            <Filter className="h-3.5 w-3.5 text-stone-400 shrink-0 hidden sm:block" />
-            <button
-              onClick={() => setSelectedFamily('ALL')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
-                selectedFamily === 'ALL' ? 'bg-emerald-500 text-stone-950 shadow-sm' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
-              }`}
-            >
-              All
-            </button>
-            {topFamilies.map(fam => (
+            {/* Pill Family Filters */}
+            <div className="flex items-center space-x-1 overflow-x-auto w-full md:w-auto px-2 pb-1 md:pb-0 scrollbar-none shrink-0">
               <button
-                key={fam}
-                onClick={() => setSelectedFamily(fam)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedFamily === fam ? 'bg-emerald-500 text-stone-950 shadow-sm' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                onClick={() => setSelectedFamily('ALL')}
+                className={`px-3.5 py-1.5 rounded-full text-[11px] font-bold transition-all whitespace-nowrap ${
+                  selectedFamily === 'ALL' ? 'bg-emerald-400 text-stone-950 shadow-lg shadow-emerald-400/20' : 'bg-white/5 text-stone-300 hover:bg-white/10'
                 }`}
               >
-                {fam}
+                All
               </button>
-            ))}
+              {topFamilies.map(fam => (
+                <button
+                  key={fam}
+                  onClick={() => setSelectedFamily(fam)}
+                  className={`px-3.5 py-1.5 rounded-full text-[11px] font-bold transition-all whitespace-nowrap ${
+                    selectedFamily === fam ? 'bg-emerald-400 text-stone-950 shadow-lg shadow-emerald-400/20' : 'bg-white/5 text-stone-300 hover:bg-white/10'
+                  }`}
+                >
+                  {fam}
+                </button>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Grid of Specimen Cards */}
-      <section>
-        <div className="flex items-center justify-between mb-4 px-1">
-          <h2 className="text-sm font-bold text-stone-800 dark:text-stone-200 flex items-center space-x-1.5">
-            <Database className="h-4 w-4 text-emerald-600" />
-            <span>Specimen Catalog ({filteredPlants.length} Species)</span>
-          </h2>
+      {/* Featured Specimen Spotlight Banner (Breaks Boxiness) */}
+      {featuredPlant && !search && selectedFamily === 'ALL' && (
+        <section className="relative overflow-hidden rounded-[2rem] bg-stone-900 text-white p-6 sm:p-8 border border-stone-800 shadow-xl">
+          <div className="flex flex-col lg:flex-row items-center gap-6">
+            
+            <div className="w-full lg:w-1/2 h-64 sm:h-72 rounded-2xl overflow-hidden relative group">
+              <PlantImage src={featuredPlant.image} alt={featuredPlant.commonName} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <span className="absolute top-3 left-3 px-3 py-1 bg-amber-400 text-stone-950 text-[10px] font-black uppercase rounded-full tracking-wider flex items-center space-x-1">
+                <Sparkles className="h-3 w-3 inline mr-1" />
+                Featured Specimen
+              </span>
+            </div>
+
+            <div className="w-full lg:w-1/2 space-y-4">
+              <div>
+                <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider">{featuredPlant.family}</span>
+                <h2 className="text-2xl sm:text-3xl font-serif italic text-white mt-1">
+                  {featuredPlant.scientificName}
+                </h2>
+                <p className="text-stone-400 text-xs font-medium mt-1">{featuredPlant.commonName}</p>
+              </div>
+
+              <p className="text-stone-300 text-xs leading-relaxed line-clamp-3">
+                {featuredPlant.description}
+              </p>
+
+              <div className="flex items-center space-x-3 pt-2">
+                <div className="px-3 py-1.5 rounded-xl bg-stone-800 border border-stone-700 text-xs font-bold text-amber-300 flex items-center space-x-1.5">
+                  <Dna className="h-4 w-4 text-amber-400" />
+                  <span>{featuredPlant.metabolites.length} Metabolites Logged</span>
+                </div>
+
+                <Link
+                  to={`/plant/${featuredPlant.id}`}
+                  className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold text-xs transition-all flex items-center space-x-1 shadow-lg shadow-emerald-500/20"
+                >
+                  <span>Explore Specimen</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Modern Specimen Collection Grid */}
+      <section className="space-y-4">
+        <div className="flex items-center justify-between px-2">
+          <div className="flex items-center space-x-2">
+            <Compass className="h-5 w-5 text-emerald-500" />
+            <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100">
+              Database Catalog ({filteredPlants.length} Species)
+            </h2>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredPlants.slice(0, visibleCount).map(plant => (
             <div 
               key={plant.id} 
-              className="group bg-white dark:bg-stone-900 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col border border-stone-200/80 dark:border-stone-800 relative"
+              className="group bg-white dark:bg-stone-900 rounded-[1.75rem] shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col border border-stone-200/80 dark:border-stone-800/80"
             >
-              {/* Plant Image Container */}
-              <div className="relative h-44 w-full">
-                <PlantImage src={plant.image} alt={plant.commonName} className="h-full w-full" />
-                <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-md text-emerald-300 text-[10px] font-bold rounded-md border border-emerald-500/30">
+              {/* Curved Top Image Container */}
+              <div className="relative h-52 w-full overflow-hidden">
+                <PlantImage src={plant.image} alt={plant.commonName} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                
+                {/* Floating Glassmorphic Pill Badges */}
+                <span className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-500/20">
                   {plant.family}
                 </span>
-                <span className="absolute top-2 right-2 px-2 py-0.5 bg-black/70 backdrop-blur-md text-amber-300 text-[10px] font-extrabold rounded-full flex items-center">
-                  <Dna className="h-3 w-3 inline mr-1" />
+
+                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/70 backdrop-blur-md text-amber-300 text-[10px] font-black rounded-full flex items-center border border-amber-400/20">
+                  <Dna className="h-3 w-3 mr-1" />
                   {plant.metabolites.length}
                 </span>
               </div>
 
-              {/* Card Details */}
-              <div className="p-4 flex-grow flex flex-col justify-between space-y-3">
+              {/* Smooth Card Details */}
+              <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
                 <div>
-                  <h3 className="italic text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 transition-colors leading-tight line-clamp-1">
+                  <h3 className="italic text-base font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-500 transition-colors line-clamp-1">
                     {plant.scientificName}
                   </h3>
-                  <p className="text-stone-500 dark:text-stone-400 text-[11px] font-medium mt-0.5 line-clamp-1">
+                  <p className="text-stone-500 dark:text-stone-400 text-xs font-medium mt-0.5 line-clamp-1">
                     {plant.commonName}
                   </p>
                 </div>
 
                 <Link 
                   to={`/plant/${plant.id}`}
-                  className="w-full flex items-center justify-center space-x-1.5 bg-slate-100 dark:bg-stone-800 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 text-stone-700 dark:text-stone-200 py-2 rounded-xl text-xs font-bold transition-all shadow-xs"
+                  className="w-full flex items-center justify-between bg-stone-100 dark:bg-stone-800 hover:bg-emerald-500 hover:text-stone-950 text-stone-700 dark:text-stone-200 px-4 py-2.5 rounded-xl text-xs font-bold transition-all"
                 >
-                  <span>Explore Specimen</span>
-                  <ChevronRight className="h-3.5 w-3.5" />
+                  <span>View Details</span>
+                  <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {filteredPlants.length === 0 && (
-          <div className="text-center py-16 bg-white dark:bg-stone-900 rounded-2xl border border-dashed border-stone-300 dark:border-stone-800">
-            <Leaf className="h-10 w-10 text-stone-300 mx-auto mb-2" />
-            <p className="text-stone-500 text-xs font-semibold">No species found matching your query.</p>
-          </div>
-        )}
-
+        {/* Load More Button */}
         {visibleCount < filteredPlants.length && (
-          <div className="text-center mt-8">
+          <div className="text-center pt-8">
             <button 
-              onClick={() => setVisibleCount(prev => prev + 20)}
-              className="px-6 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl transition-all font-bold text-xs shadow-md shadow-emerald-700/20"
+              onClick={() => setVisibleCount(prev => prev + 16)}
+              className="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold text-xs rounded-full transition-all shadow-xl shadow-emerald-500/20"
             >
               Load More Species ({filteredPlants.length - visibleCount} Remaining)
             </button>
