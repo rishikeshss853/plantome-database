@@ -25,7 +25,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Copperleaf",
     "scientificName": "Acalypha indica",
     "family": "Euphorbiaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/%28Arya%29_Acalypha_indica_Pilangsari_2019_0.jpg/800px-%28Arya%29_Acalypha_indica_Pilangsari_2019_0.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605048662/original.jpg",
     "description": "Cataloged campus species (Acalypha indica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -77,7 +77,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Smooth Agave",
     "scientificName": "Agave demeesteriana",
     "family": "Asparagaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Agave_demeesteriana_1.jpg/800px-Agave_demeesteriana_1.jpg",
+    "image": "https://api.jacq.org/v1/images/europeana/1934787?withredirect=1",
     "description": "Cataloged campus species (Agave demeesteriana) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -130,7 +130,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Chinese evergreen",
     "scientificName": "Aglaonema commutatum",
     "family": "Araceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Aglaonema_commutatum_kz1.jpg/800px-Aglaonema_commutatum_kz1.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/609503106/original.jpg",
     "description": "Cataloged campus species (Aglaonema commutatum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -182,7 +182,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Siris tree / Woman’s tongue tree",
     "scientificName": "Albizia lebbeck",
     "family": "Fabaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Starr_080531-4752_Albizia_lebbeck.jpg/800px-Starr_080531-4752_Albizia_lebbeck.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605139142/original.jpg",
     "description": "Cataloged campus species (Albizia lebbeck) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -234,7 +234,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Golden Trumpet",
     "scientificName": "Allamanda cathartica",
     "family": "Apocynaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Flowers_of_Allamanda_cathartica_in_West_Bengal%2C_India.jpg/800px-Flowers_of_Allamanda_cathartica_in_West_Bengal%2C_India.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605425946/original.jpg",
     "description": "Cataloged campus species (Allamanda cathartica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -283,7 +283,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Brazilian Joyweed",
     "scientificName": "Alternanthera brasiliana",
     "family": "Amaranthaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Brazilian_joyweed_%28Alternanthera_brasiliana%29_habit.jpg/800px-Brazilian_joyweed_%28Alternanthera_brasiliana%29_habit.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605199716/original.jpg",
     "description": "Cataloged campus species (Alternanthera brasiliana) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -334,7 +334,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Madeira Vine",
     "scientificName": "Anredera cordifolia",
     "family": "Basellaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Anredera_cordifolia%2C_Downfall_Creek_riparian_vegetation%2C_7th_Brigade_Park%2C_Chermside_DSCF5322.jpg/800px-Anredera_cordifolia%2C_Downfall_Creek_riparian_vegetation%2C_7th_Brigade_Park%2C_Chermside_DSCF5322.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605319102/original.jpg",
     "description": "Cataloged campus species (Anredera cordifolia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -383,7 +383,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Carpet Grass",
     "scientificName": "Axonopus compressus",
     "family": "Poaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Starr_040812-0041_Axonopus_compressus.jpg/800px-Starr_040812-0041_Axonopus_compressus.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605582923/original.jpg",
     "description": "Cataloged campus species (Axonopus compressus) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -438,7 +438,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Neem",
     "scientificName": "Azadirachta indica",
     "family": "Meliaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Neem_Tree_in_Rajasthan%2C_India.jpg/800px-Neem_Tree_in_Rajasthan%2C_India.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605684464/original.jpg",
     "description": "Cataloged campus species (Azadirachta indica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -499,7 +499,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Bamboo",
     "scientificName": "Bambusa tuldoides",
     "family": "Poaceae",
-    "image": "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/620613577/original.jpg",
     "description": "Cataloged campus species (Bambusa tuldoides) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -556,7 +556,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Purple Orchid Tree",
     "scientificName": "Bauhinia purpurea",
     "family": "Fabaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Phanera_purpurea_tree_with_fruits_%28Philippines%29.jpg/800px-Phanera_purpurea_tree_with_fruits_%28Philippines%29.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605039589/original.jpg",
     "description": "Cataloged campus species (Bauhinia purpurea) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -611,7 +611,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Palmyra Palm / Ice Apple",
     "scientificName": "Borassus flabellifer",
     "family": "Arecaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/C%C3%A2y_th%E1%BB%91t_n%E1%BB%91t.jpg/800px-C%C3%A2y_th%E1%BB%91t_n%E1%BB%91t.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604458345/original.jpg",
     "description": "Cataloged campus species (Borassus flabellifer) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -666,7 +666,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Bougainvillea",
     "scientificName": "Bougainvillea glabra",
     "family": "Nyctaginaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Bugenwilla.D%C5%82ugo_kwitnaca_roslina.jpg/800px-Bugenwilla.D%C5%82ugo_kwitnaca_roslina.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/610263561/original.jpg",
     "description": "Cataloged campus species (Bougainvillea glabra) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -720,7 +720,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Giant Milkweed",
     "scientificName": "Calotropis gigantea",
     "family": "Apocynaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calotropis_gigantea.jpg/800px-Calotropis_gigantea.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604458485/original.jpg",
     "description": "Cataloged campus species (Calotropis gigantea) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -774,7 +774,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Achira",
     "scientificName": "Canna indica",
     "family": "Cannaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Cinnamon-bellied_flowerpiercer_%28Diglossa_baritula%29_male_on_Indian_shot_%28Canna_indica%29_Finca_El_Pilar.jpg/800px-Cinnamon-bellied_flowerpiercer_%28Diglossa_baritula%29_male_on_Indian_shot_%28Canna_indica%29_Finca_El_Pilar.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604974389/original.jpg",
     "description": "Cataloged campus species (Canna indica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -827,7 +827,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Hybrid Canna Lily",
     "scientificName": "Canna ×",
     "family": "Cannaceae",
-    "image": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=800",
+    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=800",
     "description": "Cataloged campus species (Canna ×) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -880,7 +880,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Golden Shower Tree",
     "scientificName": "Cassia fistula",
     "family": "Fabaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Golden_shower_tree.jpg/800px-Golden_shower_tree.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605019640/original.jpg",
     "description": "Cataloged campus species (Cassia fistula) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -935,7 +935,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Australian Pine / Beefwood",
     "scientificName": "Casuarina equisetifolia",
     "family": "Casuarinaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Casuarina_equisetifolia_-_Darwin_NT.jpg/800px-Casuarina_equisetifolia_-_Darwin_NT.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605746071/original.jpg",
     "description": "Cataloged campus species (Casuarina equisetifolia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -990,7 +990,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Swollen Fingergrass / Purpletop Chloris",
     "scientificName": "Chloris barbata",
     "family": "Poaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Chloris_barbata_%283870899270%29.jpg/800px-Chloris_barbata_%283870899270%29.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604566625/original.jpg",
     "description": "Cataloged campus species (Chloris barbata) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1045,7 +1045,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Asian Spiderflower / Tickweed",
     "scientificName": "Cleome viscosa",
     "family": "Cleomaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Yellow_Spider_Flower_Cleome_viscosa.jpg/800px-Yellow_Spider_Flower_Cleome_viscosa.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605624580/original.jpg",
     "description": "Cataloged campus species (Cleome viscosa) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1100,7 +1100,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Coconut",
     "scientificName": "Cocos nucifera",
     "family": "Arecaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg/800px-Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604686414/original.jpg",
     "description": "Cataloged campus species (Cocos nucifera) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1155,7 +1155,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Madaraspatana Cucumber / Wild Cucumber",
     "scientificName": "Cucumis maderaspatanus",
     "family": "Cucurbitaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Cucumis_maderaspatanus_flower.jpg/800px-Cucumis_maderaspatanus_flower.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605550110/original.jpg",
     "description": "Cataloged campus species (Cucumis maderaspatanus) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1210,7 +1210,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Muskmelon / Cantaloupe",
     "scientificName": "Cucumis melo",
     "family": "Cucurbitaceae",
-    "image": "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604841907/original.jpg",
     "description": "Cataloged campus species (Cucumis melo) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1265,7 +1265,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Little Ironweed / Purple Fleabane",
     "scientificName": "Cyanthillium cinereum",
     "family": "Asteraceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cyanthillium_cinereum_in_Kadavoor.jpg/800px-Cyanthillium_cinereum_in_Kadavoor.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605620009/original.jpg",
     "description": "Cataloged campus species (Cyanthillium cinereum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1320,7 +1320,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Sago Palm / King Sago",
     "scientificName": "Cycas revoluta",
     "family": "Cycadaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cycas_inflorescence.jpg/800px-Cycas_inflorescence.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/607291348/original.jpg",
     "description": "Cataloged campus species (Cycas revoluta) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1374,7 +1374,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Rosewood",
     "scientificName": "Dalbergia latifolia",
     "family": "Fabaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Dalbergia_latifolia.jpg/800px-Dalbergia_latifolia.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/622017605/original.jpg",
     "description": "Cataloged campus species (Dalbergia latifolia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1428,7 +1428,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Moonflower / Downy Thorn-apple",
     "scientificName": "Datura innoxia",
     "family": "Solanaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Datura_innoxia_Mill._flower%2C_buds_and_foliage.jpg/800px-Datura_innoxia_Mill._flower%2C_buds_and_foliage.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605621241/original.jpg",
     "description": "Cataloged campus species (Datura innoxia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1482,7 +1482,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Flame Tree / Gulmohar",
     "scientificName": "Delonix regia",
     "family": "Fabaceae",
-    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604849459/original.jpg",
     "description": "Cataloged campus species (Delonix regia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1537,7 +1537,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Golden Dewdrop / Skyflower",
     "scientificName": "Duranta erecta",
     "family": "Verbenaceae",
-    "image": "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605193086/original.jpg",
     "description": "Cataloged campus species (Duranta erecta) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1589,7 +1589,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Oil Palm",
     "scientificName": "Elaeis guineensis",
     "family": "Arecaceae",
-    "image": "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/609303951/original.jpg",
     "description": "Cataloged campus species (Elaeis guineensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1641,7 +1641,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Lovegrass",
     "scientificName": "Eragrostis tenella",
     "family": "Poaceae",
-    "image": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605009670/original.jpg",
     "description": "Cataloged campus species (Eragrostis tenella) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1693,7 +1693,7 @@ export const mockPlants: Plant[] = [
     "commonName": "River Red Gum",
     "scientificName": "Eucalyptus camaldulensis",
     "family": "Myrtaceae",
-    "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605033759/original.jpg",
     "description": "Cataloged campus species (Eucalyptus camaldulensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1745,7 +1745,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Wild Poinsettia",
     "scientificName": "Euphorbia heterophylla",
     "family": "Euphorbiaceae",
-    "image": "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605444082/original.jpg",
     "description": "Cataloged campus species (Euphorbia heterophylla) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1797,7 +1797,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Asthma Plant / Patra",
     "scientificName": "Euphorbia hirta",
     "family": "Euphorbiaceae",
-    "image": "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604603174/original.jpg",
     "description": "Cataloged campus species (Euphorbia hirta) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1849,7 +1849,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Crown of Thorns",
     "scientificName": "Euphorbia milii",
     "family": "Euphorbiaceae",
-    "image": "https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604505601/original.jpg",
     "description": "Cataloged campus species (Euphorbia milii) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1901,7 +1901,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Devil’s Backbone",
     "scientificName": "Euphorbia tithymaloides",
     "family": "Euphorbiaceae",
-    "image": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/609147910/original.jpg",
     "description": "Cataloged campus species (Euphorbia tithymaloides) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -1953,7 +1953,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Cluster Fig / Indian Fig Tree",
     "scientificName": "Ficus racemosa",
     "family": "Moraceae",
-    "image": "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604660871/original.jpg",
     "description": "Cataloged campus species (Ficus racemosa) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2005,7 +2005,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Peepal Tree / Sacred Fig",
     "scientificName": "Ficus religiosa",
     "family": "Moraceae",
-    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605617828/original.jpg",
     "description": "Cataloged campus species (Ficus religiosa) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2057,7 +2057,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Banyan Fig / Ginseng Fig",
     "scientificName": "Ficus retusa",
     "family": "Moraceae",
-    "image": "https://images.unsplash.com/photo-1477554193778-95bf1258d6b3?auto=format&fit=crop&q=80&w=800",
+    "image": "https://bs.plantnet.org/image/o/9b01126c48ab2816f81340dd080e1d6053dac543",
     "description": "Cataloged campus species (Ficus retusa) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2109,7 +2109,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Fern Tree",
     "scientificName": "Filicium decipiens",
     "family": "Sapindaceae",
-    "image": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604681008/original.jpg",
     "description": "Cataloged campus species (Filicium decipiens) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2161,7 +2161,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Cherry / Paniala",
     "scientificName": "Flacourtia jangomas",
     "family": "Salicaceae",
-    "image": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/647847686/original.jpg",
     "description": "Cataloged campus species (Flacourtia jangomas) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2213,7 +2213,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Globe Amaranth",
     "scientificName": "Gomphrena celosioides",
     "family": "Amaranthaceae",
-    "image": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604722981/original.jpg",
     "description": "Cataloged campus species (Gomphrena celosioides) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2265,7 +2265,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Firebush / Scarlet Bush",
     "scientificName": "Hamelia patens",
     "family": "Rubiaceae",
-    "image": "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604635889/original.jpg",
     "description": "Cataloged campus species (Hamelia patens) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2317,7 +2317,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Umbrella Tree",
     "scientificName": "Heptapleurum actinophyllum",
     "family": "Araliaceae",
-    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604869355/original.jpg",
     "description": "Cataloged campus species (Heptapleurum actinophyllum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2369,7 +2369,7 @@ export const mockPlants: Plant[] = [
     "commonName": "False Aralia",
     "scientificName": "Heptapleurum ellipticum",
     "family": "Araliaceae",
-    "image": "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/637319724/original.jpg",
     "description": "Cataloged campus species (Heptapleurum ellipticum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2421,7 +2421,7 @@ export const mockPlants: Plant[] = [
     "commonName": "False Silk Tree",
     "scientificName": "Holarrhena floribunda",
     "family": "Apocynaceae",
-    "image": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/645477364/original.jpg",
     "description": "Cataloged campus species (Holarrhena floribunda) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2473,7 +2473,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Chinese Ixora",
     "scientificName": "Ixora chinensis",
     "family": "Rubiaceae",
-    "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/608901128/original.jpg",
     "description": "Cataloged campus species (Ixora chinensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2525,7 +2525,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Ixora",
     "scientificName": "Ixora finlaysoniana",
     "family": "Rubiaceae",
-    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/618445637/original.jpg",
     "description": "Cataloged campus species (Ixora finlaysoniana) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2577,7 +2577,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Queen’s Crape Myrtle / Banaba",
     "scientificName": "Lagerstroemia speciosa",
     "family": "Lythraceae",
-    "image": "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/606733818/original.jpg",
     "description": "Cataloged campus species (Lagerstroemia speciosa) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2629,7 +2629,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Chinese Fan Palm",
     "scientificName": "Livistona chinensis",
     "family": "Arecaceae",
-    "image": "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/606917874/original.jpg",
     "description": "Cataloged campus species (Livistona chinensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2681,7 +2681,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Mahua",
     "scientificName": "Madhuca longifolia",
     "family": "Sapotaceae",
-    "image": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/615465174/original.jpg",
     "description": "Cataloged campus species (Madhuca longifolia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2733,7 +2733,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Mango",
     "scientificName": "Mangifera indica",
     "family": "Anacardiaceae",
-    "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605361763/original.jpg",
     "description": "Cataloged campus species (Mangifera indica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2785,7 +2785,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Weeping Bottlebrush",
     "scientificName": "Melaleuca viminalis",
     "family": "Myrtaceae",
-    "image": "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604713854/original.jpg",
     "description": "Cataloged campus species (Melaleuca viminalis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2837,7 +2837,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Cork Tree",
     "scientificName": "Millingtonia hortensis",
     "family": "Bignoniaceae",
-    "image": "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/615666917/original.jpg",
     "description": "Cataloged campus species (Millingtonia hortensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2881,7 +2881,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Spanish Cherry / Bakul",
     "scientificName": "Mimusops elengi",
     "family": "Sapotaceae",
-    "image": "https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604390365/original.jpg",
     "description": "Cataloged campus species (Mimusops elengi) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2932,7 +2932,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Mast Tree / False Ashoka",
     "scientificName": "Monoon longifolium",
     "family": "Annonaceae",
-    "image": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/608337541/original.jpg",
     "description": "Cataloged campus species (Monoon longifolium) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -2984,7 +2984,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Noni / Indian Mulberry",
     "scientificName": "Morinda citrifolia",
     "family": "Rubiaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Noni_fruit_%28Morinda_citrifolia%29.jpg/800px-Noni_fruit_%28Morinda_citrifolia%29.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604931562/original.jpg",
     "description": "Cataloged campus species (Morinda citrifolia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3036,7 +3036,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Mulberry / Nunaa / Noni Tree",
     "scientificName": "Morinda coreia",
     "family": "Rubiaceae",
-    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/609388838/original.jpg",
     "description": "Cataloged campus species (Morinda coreia) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3088,7 +3088,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Jamaica Cherry / Strawberry Tree",
     "scientificName": "Muntingia calabura",
     "family": "Muntingiaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Singapur_cherry_%28Muntingia_calabura%29_in_Hyderabad%2C_AP_W_IMG_9597.jpg/800px-Singapur_cherry_%28Muntingia_calabura%29_in_Hyderabad%2C_AP_W_IMG_9597.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604524627/original.jpg",
     "description": "Cataloged campus species (Muntingia calabura) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3140,7 +3140,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Screw Pine / Thatch Screwpine",
     "scientificName": "Pandanus tectorius",
     "family": "Pandanaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Pandanus_tectorius.jpg/800px-Pandanus_tectorius.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604709157/original.jpg",
     "description": "Cataloged campus species (Pandanus tectorius) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3190,7 +3190,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Blue Passion Flower",
     "scientificName": "Passiflora caerulea",
     "family": "Passifloraceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Passiflora_caerulea_%282019-06-24%29_frontal-view.jpg/800px-Passiflora_caerulea_%282019-06-24%29_frontal-view.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604744283/original.jpg",
     "description": "Cataloged campus species (Passiflora caerulea) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3242,7 +3242,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Stinking Passion Flower / Wild Water Lemon",
     "scientificName": "Passiflora foetida",
     "family": "Passifloraceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Passiflora_foetida_Jul_22%2C_2023.jpg/800px-Passiflora_foetida_Jul_22%2C_2023.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605517881/original.jpg",
     "description": "Cataloged campus species (Passiflora foetida) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3294,7 +3294,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Copperpod / Yellow Flame Tree",
     "scientificName": "Peltophorum pterocarpum",
     "family": "Fabaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Starr_030514-0025_Peltophorum_pterocarpum.jpg/800px-Starr_030514-0025_Peltophorum_pterocarpum.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604941303/original.jpg",
     "description": "Cataloged campus species (Peltophorum pterocarpum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3346,7 +3346,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Mountain Date Palm",
     "scientificName": "Phoenix loureiroi",
     "family": "Arecaceae",
-    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604704597/original.jpg",
     "description": "Cataloged campus species (Phoenix loureiroi) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3398,7 +3398,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Stonebreaker / Keezhanelli",
     "scientificName": "Phyllanthus amarus",
     "family": "Phyllanthaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Phyllanthus_amarus_257290771.jpg/800px-Phyllanthus_amarus_257290771.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605083733/original.jpg",
     "description": "Cataloged campus species (Phyllanthus amarus) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3450,7 +3450,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Maderaspatensis Leaf Flower",
     "scientificName": "Phyllanthus maderaspatensis",
     "family": "Phyllanthaceae",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/%E0%AE%AE%E0%AF%87%E0%AE%B2%E0%AE%BE%E0%AE%A8%E0%AF%86%E0%AE%B2%E0%AF%8D%E0%AE%B2%E0%AE%BF4.jpg/800px-%E0%AE%AE%E0%AF%87%E0%AE%B2%E0%AE%BE%E0%AE%A8%E0%AF%86%E0%AE%B2%E0%AF%8D%E0%AE%B2%E0%AE%BF4.jpg",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/612410942/original.jpg",
     "description": "Cataloged campus species (Phyllanthus maderaspatensis) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3502,7 +3502,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Black-Honey Shrub / Karuppu Nelli",
     "scientificName": "Phyllanthus reticulatus",
     "family": "Phyllanthaceae",
-    "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605536900/original.jpg",
     "description": "Cataloged campus species (Phyllanthus reticulatus) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3553,7 +3553,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Cape Leadwort / Blue Plumbago",
     "scientificName": "Plumbago auriculata",
     "family": "Plumbaginaceae",
-    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605337377/original.jpg",
     "description": "Cataloged campus species (Plumbago auriculata) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3603,7 +3603,7 @@ export const mockPlants: Plant[] = [
     "commonName": "White Frangipani",
     "scientificName": "Plumeria alba",
     "family": "Apocynaceae",
-    "image": "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/604839893/original.jpg",
     "description": "Cataloged campus species (Plumeria alba) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3655,7 +3655,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Bridal Bouquet",
     "scientificName": "Plumeria pudica",
     "family": "Apocynaceae",
-    "image": "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/605660962/original.jpg",
     "description": "Cataloged campus species (Plumeria pudica) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3695,7 +3695,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Geranium-Leaf Aralia",
     "scientificName": "Polyscias guilfoylei",
     "family": "Araliaceae",
-    "image": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/609561694/original.jpg",
     "description": "Cataloged campus species (Polyscias guilfoylei) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3747,7 +3747,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Shield Aralia",
     "scientificName": "Polyscias scutellaria",
     "family": "Araliaceae",
-    "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/608389605/original.jpg",
     "description": "Cataloged campus species (Polyscias scutellaria) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3787,7 +3787,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Indian Beech / Pongam",
     "scientificName": "Pongamia pinnata",
     "family": "Fabaceae",
-    "image": "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/607084519/original.jpg",
     "description": "Cataloged campus species (Pongamia pinnata) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3839,7 +3839,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Mesquite / Vilayati Keekar",
     "scientificName": "Prosopis juliflora",
     "family": "Fabaceae",
-    "image": "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/610684008/original.jpg",
     "description": "Cataloged campus species (Prosopis juliflora) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
@@ -3891,7 +3891,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Yellow-Vein Eranthemum",
     "scientificName": "Pseuderanthemum maculatum",
     "family": "Acanthaceae",
-    "image": "https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&q=80&w=800",
+    "image": "https://inaturalist-open-data.s3.amazonaws.com/photos/607435491/original.jpg",
     "description": "Cataloged campus species (Pseuderanthemum maculatum) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
