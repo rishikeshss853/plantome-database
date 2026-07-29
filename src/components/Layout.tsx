@@ -87,17 +87,6 @@ export default function Layout() {
                 <span>Compounds</span>
               </Link>
               <Link 
-  to="/qr-codes" 
-  className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
-    isActive('/qr-codes') 
-      ? 'bg-stone-700 text-emerald-300 shadow-sm font-semibold' 
-      : 'text-stone-400 hover:text-stone-200'
-  }`}
->
-  <QrCode className="h-3.5 w-3.5 inline" />
-  <span>QR / AR Tags</span>
-</Link>
-              <Link 
                 to="/about" 
                 className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
                   isActive('/about') 
