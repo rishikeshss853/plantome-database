@@ -36,7 +36,7 @@ export default function About() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mt-4">
           <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
             <p className="font-bold text-emerald-800 dark:text-emerald-300">VARSHINI S</p>
-            <p className="text-xs text-stone-500">Lead Researcher / Developer</p>
+            <p className="text-xs text-stone-500">Lead Researcher</p>
           </div>
           <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
             <p className="font-bold text-emerald-800 dark:text-emerald-300">PRADESH K</p>
