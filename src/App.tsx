@@ -7,7 +7,7 @@ import Compounds from './pages/compounds';
 import Families from './pages/Families';
 import About from './pages/About';
 import Contacts from './pages/Contact';
-import QRCodes from './pages/QRCodes';
+
 
 export default function App() {
   return (
@@ -18,7 +18,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="qr-codes" element={<QRCodes />} />
           <Route path="plant/:id" element={<PlantProfile />} />
           <Route path="compounds" element={<Compounds />} />
           <Route path="families" element={<Families />} />
