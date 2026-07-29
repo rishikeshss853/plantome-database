@@ -77,7 +77,7 @@ export const mockPlants: Plant[] = [
     "commonName": "Smooth Agave",
     "scientificName": "Agave demeesteriana",
     "family": "Asparagaceae",
-    "image": "https://api.jacq.org/v1/images/europeana/1934787?withredirect=1",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQw6DCDAMxJ2R45i8CFcUNgTMO1-_FzDxADAwZgWHbXH6sGaEHymZPW5_J&s=10",
     "description": "Cataloged campus species (Agave demeesteriana) registered in HITS Department of Biotechnology database.",
     "traditionalUses": [
       "Documented in HITS Department of Biotechnology campus flora catalog."
