@@ -7,16 +7,25 @@ export interface Metabolite {
   activities: string[];
   category: string;
 }
-
 export interface Plant {
-  id: string;
+  id: string | number;
   commonName: string;
   scientificName: string;
   family: string;
-  image: string;
-  description: string;
-  traditionalUses: string[];
-  metabolites: Metabolite[];
+  image?: string;
+  imageUrl?: string;
+  description?: string;
+  traditionalUses?: string[];
+  phytochemicals?: Phytochemical[];
+  [key: string]: any; // Allows any extra Excel columns without throwing TypeScript errors
+}
+export interface Phytochemical {
+  name: string;
+  type?: string;        // e.g. "phenolic", "glycoside"
+  location?: string;    // e.g. "leaves", "bark"
+  pubChemId?: string;
+  smiles?: string;
+  activities?: string[];
 }
 
 export const mockPlants: Plant[] = [
