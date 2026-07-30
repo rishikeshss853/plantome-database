@@ -221,7 +221,7 @@ export default function PlantProfile() {
       )}
 
       {/* PHYTOCHEMICAL DATA CARDS */}
-      {pytochemicalsList.length > 0 && (
+      {phytochemicalsList.length > 0 && (
         <div className="space-y-4 text-left">
           <div>
             <h2 className="text-xl font-bold text-white">Phytochemical Data</h2>
@@ -231,7 +231,7 @@ export default function PlantProfile() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {pytochemicalsList.map((phyto: any, idx: number) => {
+            {phytochemicalsList.map((phyto: any, idx: number) => {
               const name = typeof phyto === 'string' ? phyto : (phyto.name || 'Compound');
               const type = phyto.type || 'metabolite';
               const location = phyto.location || 'Whole plant';
