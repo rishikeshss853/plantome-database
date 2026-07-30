@@ -33,18 +33,22 @@ export default function About() {
         <h2 className="text-xl font-bold text-stone-800 dark:text-emerald-50 mb-4 border-b border-emerald-100 dark:border-stone-700 pb-2">
           Project Contributors
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mt-4">
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center mt-4">
           <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
             <p className="font-bold text-emerald-800 dark:text-emerald-300">VARSHINI S</p>
-            <p className="text-xs text-stone-500">Lead Researcher</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">Project Coordinator &amp; Database Lead</p>
+          </div>
+          <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
+            <p className="font-bold text-emerald-800 dark:text-emerald-300">RISHIKESH S S</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">Website Developer</p>
           </div>
           <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
             <p className="font-bold text-emerald-800 dark:text-emerald-300">PRADESH K</p>
-            <p className="text-xs text-stone-500">Co-Researcher</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">Plant Survey &amp; Data Collection</p>
           </div>
           <div className="p-4 bg-emerald-50 dark:bg-stone-700/50 rounded-xl">
             <p className="font-bold text-emerald-800 dark:text-emerald-300">ROHIT</p>
-            <p className="text-xs text-stone-500">Co-Researcher</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">Plant Survey &amp; Data Collection</p>
           </div>
         </div>
       </div>

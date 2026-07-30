@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Leaf, Moon, Sun, Info, Dna, Sparkles, FolderTree, QrCode } from 'lucide-react';
+import { Leaf, Moon, Sun, Info, Dna, Sparkles, FolderTree, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Layout() {
@@ -26,7 +26,7 @@ export default function Layout() {
         <span>Hindustan Institute of Technology and Science — Department of Biotechnology</span>
       </div>
 
-      {/* Sticky Glassmorphic Navbar (Full Bleed Width) */}
+      {/* Sticky Glassmorphic Navbar */}
       <header className="sticky top-0 z-50 w-full bg-stone-900/90 backdrop-blur-md border-b border-stone-800 shadow-md">
         <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 h-16 flex items-center justify-between">
           
@@ -48,7 +48,7 @@ export default function Layout() {
             </div>
           </Link>
 
-          {/* Nav Links & Theme Control */}
+          {/* Clean Navigation Bar & Theme Control */}
           <div className="flex items-center space-x-2 sm:space-x-4">
             <nav className="flex items-center bg-stone-800/80 p-1 rounded-xl border border-stone-700/60 text-xs sm:text-sm font-medium">
               <Link 
@@ -86,6 +86,7 @@ export default function Layout() {
                 <Dna className="h-3.5 w-3.5 inline" />
                 <span>Compounds</span>
               </Link>
+
               <Link 
                 to="/about" 
                 className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
@@ -96,6 +97,18 @@ export default function Layout() {
               >
                 <Info className="h-3.5 w-3.5 inline" />
                 <span>About</span>
+              </Link>
+
+              <Link 
+                to="/contact" 
+                className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
+                  isActive('/contact') 
+                    ? 'bg-stone-700 text-emerald-300 shadow-sm font-semibold' 
+                    : 'text-stone-400 hover:text-stone-200'
+                }`}
+              >
+                <Mail className="h-3.5 w-3.5 inline" />
+                <span>Contact</span>
               </Link>
             </nav>
 
@@ -112,12 +125,12 @@ export default function Layout() {
         </div>
       </header>
 
-      {/* Main Page Content (Full Screen Expanded Width) */}
+      {/* Main Page Content */}
       <main className="flex-grow w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8">
         <Outlet />
       </main>
 
-      {/* Footer (Full Bleed Width) */}
+      {/* Footer */}
       <footer className="w-full bg-stone-900 border-t border-stone-800 py-8 mt-16 transition-colors">
         <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div>
@@ -132,6 +145,9 @@ export default function Layout() {
           <div className="flex flex-wrap justify-center gap-2 text-xs">
             <span className="px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-emerald-300 font-semibold">
               VARSHINI S
+            </span>
+            <span className="px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-emerald-300 font-semibold">
+              RISHIKESH S S
             </span>
             <span className="px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-emerald-300 font-semibold">
               PRADESH K
