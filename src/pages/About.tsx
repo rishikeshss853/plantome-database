@@ -43,7 +43,7 @@ export default function About() {
             <p className="text-xs text-stone-600 dark:text-stone-300 font-medium mt-0.5">Assistant Professor</p>
           </div>
           <div className="p-4 bg-emerald-50/80 dark:bg-stone-700/50 rounded-xl border border-emerald-200/60 dark:border-stone-600">
-            <p className="font-bold text-emerald-900 dark:text-emerald-300">Dr. PINNE J SANDHYA</p>
+            <p className="font-bold text-emerald-900 dark:text-emerald-300">Dr. J SANDHYA</p>
             <p className="text-xs text-stone-600 dark:text-stone-300 font-medium mt-0.5">Assistant Professor</p>
           </div>
         </div>
