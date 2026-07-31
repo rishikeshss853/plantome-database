@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, QrCode, Download, Share2, Check, 
-  BookOpen, ExternalLink, Copy
+  BookOpen, ExternalLink, Copy, Loader2
 } from 'lucide-react';
 import { mockPlants } from '../data';
 
@@ -11,8 +11,38 @@ export default function PlantProfile() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedSmilesIndex, setCopiedSmilesIndex] = useState<number | null>(null);
 
-  // Dynamic Lookup across all species
+  // Live web overview state
+  const [wikiOverview, setWikiOverview] = useState<string>('');
+  const [loadingWiki, setLoadingWiki] = useState<boolean>(false);
+
+  // Dynamic Lookup across all species in data.ts
   const plant = mockPlants.find((p) => String(p.id) === String(id)) || mockPlants[0];
+
+  // Dynamically fetch exact botanical data from Wikipedia API using scientific name
+  useEffect(() => {
+    if (!plant?.scientificName) return;
+
+    // Clean up scientific name (remove extra authority citations if present)
+    const cleanScientificName = plant.scientificName.split(' ')[0] + ' ' + (plant.scientificName.split(' ')[1] || '');
+
+    setLoadingWiki(true);
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanScientificName)}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then((data) => {
+        if (data.extract) {
+          setWikiOverview(data.extract);
+        } else {
+          setWikiOverview(`${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
+        }
+      })
+      .catch(() => {
+        setWikiOverview(`${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
+      })
+      .finally(() => setLoadingWiki(false));
+  }, [plant?.scientificName, plant?.commonName]);
 
   if (!plant) {
     return (
@@ -100,6 +130,11 @@ export default function PlantProfile() {
   // Extract phytochemical array safely regardless of Excel column naming
   const phytochemicalsList: any[] = plant.phytochemicals || plant.metabolites || [];
 
+  // Determine botanical overview: use custom Excel description if present, otherwise live fetched overview
+  const overviewDisplay = (plant.description && !plant.description.includes('Cataloged campus species')) 
+    ? plant.description 
+    : wikiOverview;
+
   return (
     <div className="w-full max-w-6xl mx-auto space-y-8">
       
@@ -131,7 +166,7 @@ export default function PlantProfile() {
       {/* Main Specimen Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* LEFT: Plant Photo + QR Code Generator */}
+        {/* LEFT: Plant Photo + QR Code Generator Badge */}
         <div className="lg:col-span-5 space-y-6">
           <div className="relative group rounded-2xl overflow-hidden border border-stone-800 shadow-xl bg-stone-900">
             <img 
@@ -189,18 +224,24 @@ export default function PlantProfile() {
             </p>
           </div>
 
-          {/* Botanical Overview */}
-          {plant.description && (
-            <div className="bg-stone-900/80 rounded-2xl p-5 border border-stone-800 space-y-2">
-              <div className="flex items-center space-x-2 text-stone-300 font-semibold text-xs uppercase tracking-wider">
-                <BookOpen className="h-4 w-4 text-emerald-400" />
-                <span>Botanical Overview</span>
-              </div>
-              <p className="text-stone-300 text-sm leading-relaxed">
-                {plant.description}
-              </p>
+          {/* Botanical Overview Section */}
+          <div className="bg-stone-900/80 rounded-2xl p-5 border border-stone-800 space-y-2">
+            <div className="flex items-center space-x-2 text-stone-300 font-semibold text-xs uppercase tracking-wider">
+              <BookOpen className="h-4 w-4 text-emerald-400" />
+              <span>Botanical Overview</span>
             </div>
-          )}
+
+            {loadingWiki ? (
+              <div className="flex items-center space-x-2 text-stone-400 text-sm py-2">
+                <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
+                <span>Fetching botanical data from repository...</span>
+              </div>
+            ) : (
+              <p className="text-stone-300 text-sm leading-relaxed">
+                {overviewDisplay}
+              </p>
+            )}
+          </div>
         </div>
 
       </div>
