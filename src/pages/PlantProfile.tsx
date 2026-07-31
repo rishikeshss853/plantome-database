@@ -11,7 +11,7 @@ export default function PlantProfile() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedSmilesIndex, setCopiedSmilesIndex] = useState<number | null>(null);
 
-  // Dynamic Lookup across all 76+ species
+  // Dynamic Lookup across all species
   const plant = mockPlants.find((p) => String(p.id) === String(id)) || mockPlants[0];
 
   if (!plant) {
@@ -224,84 +224,127 @@ export default function PlantProfile() {
       {phytochemicalsList.length > 0 && (
         <div className="space-y-4 text-left">
           <div>
-            <h2 className="text-xl font-bold text-white">Phytochemical Data</h2>
-            <p className="text-xs text-stone-400">
+            <h2 className="text-xl font-bold text-stone-900 dark:text-white">Phytochemical Data</h2>
+            <p className="text-xs text-stone-500 dark:text-stone-400">
               Major metabolites and bioactive compounds identified in {plant.commonName}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {phytochemicalsList.map((phyto: any, idx: number) => {
-              const name = typeof phyto === 'string' ? phyto : (phyto.name || 'Compound');
-              const type = phyto.type || 'metabolite';
-              const location = phyto.location || 'Whole plant';
-              const pubChemId = phyto.pubChemId;
-              const smiles = phyto.smiles;
-              const activities = phyto.activities || [];
+              const name = typeof phyto === 'string' ? phyto : (phyto.name || phyto.Name || 'Compound');
+              const type = phyto.type || phyto.Type || 'Metabolite';
+              const location = phyto.location || phyto.Location || phyto.plantPart || 'Whole plant';
+
+              const rawPubChem = 
+                phyto.pubChemId || 
+                phyto.pubchemId || 
+                phyto.pubChemID || 
+                phyto.pubchem || 
+                phyto.cid || 
+                phyto['PubChem ID'] || 
+                phyto['pubchem_id'];
+
+              const rawSmiles = 
+                phyto.smiles || 
+                phyto.SMILES || 
+                phyto.canonicalSmiles || 
+                phyto['Canonical SMILES'];
+
+              const hasValidPubChem = 
+                rawPubChem && 
+                String(rawPubChem).trim() !== '' && 
+                String(rawPubChem).toUpperCase() !== 'N/A';
+
+              const hasValidSmiles = 
+                rawSmiles && 
+                String(rawSmiles).trim() !== '' && 
+                String(rawSmiles).toUpperCase() !== 'N/A';
+
+              const activities = phyto.activities || phyto.Activities || [];
 
               return (
                 <div 
                   key={idx} 
-                  className="bg-stone-900/90 rounded-2xl p-5 border border-stone-800 space-y-4 flex flex-col justify-between shadow-lg"
+                  className="bg-white dark:bg-stone-900/90 rounded-2xl p-5 border border-stone-200 dark:border-stone-800 space-y-4 flex flex-col justify-between shadow-sm dark:shadow-lg transition-colors"
                 >
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-white text-base">{name}</h3>
-                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-bold text-stone-900 dark:text-white text-base truncate">{name}</h3>
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
                         {type}
                       </span>
                     </div>
 
-                    <div className="text-xs text-stone-400 space-x-1">
+                    <div className="text-xs text-stone-500 dark:text-stone-400 space-x-1">
                       <span>Location:</span>
-                      <span className="text-stone-200 font-medium">{location}</span>
+                      <span className="text-stone-800 dark:text-stone-200 font-medium">{location}</span>
                     </div>
 
-                    {pubChemId && (
-                      <div className="flex items-center justify-between text-xs text-stone-400">
-                        <span>PubChem ID:</span>
+                    {/* PubChem Row with Auto-Search Fallback */}
+                    <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400">
+                      <span>PubChem ID:</span>
+                      {hasValidPubChem ? (
                         <a
-                          href={`https://pubchem.ncbi.nlm.nih.gov/compound/${pubChemId}`}
+                          href={`https://pubchem.ncbi.nlm.nih.gov/compound/${rawPubChem}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center space-x-1 text-stone-200 hover:text-emerald-400 font-mono transition"
+                          className="inline-flex items-center space-x-1 text-emerald-700 dark:text-stone-200 hover:text-emerald-500 font-mono transition"
                         >
-                          <span>{pubChemId}</span>
+                          <span>{rawPubChem}</span>
                           <ExternalLink className="h-3 w-3" />
                         </a>
-                      </div>
-                    )}
+                      ) : (
+                        <a
+                          href={`https://pubchem.ncbi.nlm.nih.gov/#query=${encodeURIComponent(name)}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 hover:underline text-[11px] font-medium transition"
+                          title="Search this compound on PubChem"
+                        >
+                          <span>Search PubChem</span>
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      )}
+                    </div>
 
-                    {smiles && (
+                    {/* SMILES Section */}
+                    {hasValidSmiles ? (
                       <div className="space-y-1">
-                        <div className="flex items-center justify-between text-[11px] text-stone-400">
+                        <div className="flex items-center justify-between text-[11px] text-stone-500 dark:text-stone-400">
                           <span>SMILES:</span>
                           <button 
-                            onClick={() => copySmiles(smiles, idx)}
-                            className="text-stone-400 hover:text-emerald-400 transition"
+                            onClick={() => copySmiles(rawSmiles, idx)}
+                            className="text-stone-400 hover:text-emerald-500 transition"
+                            title="Copy SMILES string"
                           >
                             {copiedSmilesIndex === idx ? (
-                              <Check className="h-3.5 w-3.5 text-emerald-400" />
+                              <Check className="h-3.5 w-3.5 text-emerald-500" />
                             ) : (
                               <Copy className="h-3.5 w-3.5" />
                             )}
                           </button>
                         </div>
-                        <div className="p-2.5 rounded-xl bg-stone-950 border border-stone-800 font-mono text-[11px] text-stone-300 break-all leading-tight select-all">
-                          {smiles}
+                        <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 font-mono text-[11px] text-stone-800 dark:text-stone-300 break-all leading-tight select-all">
+                          {rawSmiles}
                         </div>
+                      </div>
+                    ) : (
+                      <div className="text-[11px] text-stone-400 dark:text-stone-500 italic">
+                        SMILES structure not recorded
                       </div>
                     )}
                   </div>
 
+                  {/* Activities Tags */}
                   {activities.length > 0 && (
-                    <div className="pt-2 border-t border-stone-800 space-y-1.5">
-                      <span className="text-[11px] text-stone-400 block">Activities:</span>
+                    <div className="pt-2 border-t border-stone-200 dark:border-stone-800 space-y-1.5">
+                      <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Activities:</span>
                       <div className="flex flex-wrap gap-1.5">
                         {activities.map((act: string, aIdx: number) => (
                           <span 
                             key={aIdx} 
-                            className="text-[11px] px-2.5 py-1 rounded-lg bg-stone-950 border border-stone-800 text-stone-300 font-medium"
+                            className="text-[11px] px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 font-medium"
                           >
                             {act}
                           </span>
