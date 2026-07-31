@@ -20,39 +20,39 @@ export default function PlantProfile() {
   const plant = mockPlants.find((p) => String(p.id) === String(id)) || mockPlants[0];
 
   // Helper to extract and clean sections from raw Wikipedia text
-  const parseWikiData = (fullText: string) => {
-    // 1. Overview: Intro paragraph before the first section heading
-    const introText = fullText.split(/\n={2,5}/)[0].trim();
-    const cleanOverview = introText.replace(/\[\d+\]/g, '').trim();
+const parseWikiData = (fullText: string) => {
+  // Overview: Intro paragraph before the first section heading
+  const introText = fullText.split(/\n={2,5}/)[0].trim();
+  const cleanOverview = introText.replace(/\[\d+\]/g, '').trim();
 
-    // 2. Traditional / Medicinal Uses: Expanded flexible header matching (==, ===, ====)
-    const usesRegex = /(?:={2,5})\s*(Traditional medicine|Medicinal uses|Medicinal|Uses|Ethnobotany|Medical uses|Traditional uses|Ayurvedic uses|Herbal medicine|Folk medicine|Culinary and medicinal uses|Pharmacology)\s*(?:={2,5})([\s\S]*?)(?=\n={2,5}\s*[^=]|$)/i;
-    const usesMatch = fullText.match(usesRegex);
+  // Expanded Regex covering more ethnobotanical, agricultural & folk headings
+  const usesRegex = /(?:={2,5})\s*(Traditional medicine|Medicinal uses|Medicinal|Uses|Ethnobotany|Medical uses|Traditional uses|Ayurvedic uses|Herbal medicine|Folk medicine|Culinary|Culinary uses|Food|In folk medicine|Ethnomedicine|Pharmacology|Toxicity|Properties)\s*(?:={2,5})([\s\S]*?)(?=\n={2,5}\s*[^=]|$)/i;
+  const usesMatch = fullText.match(usesRegex);
 
-    let parsedUses: string[] = [];
+  let parsedUses: string[] = [];
 
-    if (usesMatch && usesMatch[2]) {
-      parsedUses = usesMatch[2]
-        .split(/(?:\n+|\.\s+)/)
-        .map((line) => line.replace(/^[*=-]\s*/, '').replace(/\[\d+\]/g, '').trim())
-        .filter((line) => line.length > 25 && !line.startsWith('='))
-        .slice(0, 5);
-    }
+  if (usesMatch && usesMatch[2]) {
+    parsedUses = usesMatch[2]
+      .split(/(?:\n+|\.\s+)/)
+      .map((line) => line.replace(/^[*=-]\s*/, '').replace(/\[\d+\]/g, '').trim())
+      .filter((line) => line.length > 25 && !line.startsWith('='))
+      .slice(0, 5);
+  }
 
-    // Fallback: Scan full article for medicinal keywords if no explicit section exists
-    if (parsedUses.length === 0) {
-      const sentences = fullText.replace(/\[\d+\]/g, '').split(/(?<=[.!?])\s+/);
-      parsedUses = sentences
-        .filter((s) => 
-          /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer|antioxidant|tonic|decoction/i.test(s) &&
-          s.length > 30 &&
-          !s.startsWith('=')
-        )
-        .slice(0, 4);
-    }
+  // Expanded fallback keywords (covers poultice, decoction, antimicrobial, fever, skin, etc.)
+  if (parsedUses.length === 0) {
+    const sentences = fullText.replace(/\[\d+\]/g, '').split(/(?<=[.!?])\s+/);
+    parsedUses = sentences
+      .filter((s) => 
+        /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer|antioxidant|tonic|decoction|poultice|infusion|ethno|antimicrobial|analgesic|edible|indigenous|folk/i.test(s) &&
+        s.length > 25 &&
+        !s.startsWith('=')
+      )
+      .slice(0, 4);
+  }
 
-    return { cleanOverview, parsedUses };
-  };
+  return { cleanOverview, parsedUses };
+};
 
   // Fetch Wikipedia data with automatic redirects & title fallback
   useEffect(() => {
@@ -308,28 +308,30 @@ export default function PlantProfile() {
 
       </div>
 
-      {/* TRADITIONAL USES */}
-      {(displayUses.length > 0 || loadingWiki) && (
-        <div className="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 text-left space-y-4">
-          <h2 className="text-lg font-bold text-white tracking-wide">Traditional Uses</h2>
-          
-          {loadingWiki && displayUses.length === 0 ? (
-            <div className="flex items-center space-x-2 text-stone-400 text-sm py-2">
-              <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
-              <span>Extracting traditional uses from botanical archives...</span>
-            </div>
-          ) : (
-            <ul className="space-y-2.5 text-stone-300 text-sm">
-              {displayUses.map((use: string, idx: number) => (
-                <li key={idx} className="flex items-start space-x-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
-                  <span>{use}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+{/* 2. Traditional Uses UI with Explicit Empty State */}
+<div className="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 text-left space-y-4">
+  <h2 className="text-lg font-bold text-white tracking-wide">Traditional Uses</h2>
+  
+  {loadingWiki ? (
+    <div className="flex items-center space-x-2 text-stone-400 text-sm py-2">
+      <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
+      <span>Searching botanical archives for traditional uses...</span>
+    </div>
+  ) : displayUses.length > 0 ? (
+    <ul className="space-y-2.5 text-stone-300 text-sm">
+      {displayUses.map((use: string, idx: number) => (
+        <li key={idx} className="flex items-start space-x-3">
+          <span className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
+          <span>{use}</span>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p className="text-stone-400 text-sm italic">
+      No specific traditional or ethnobotanical uses documented in this specimen's public record.
+    </p>
+  )}
+</div>
 
       {/* PHYTOCHEMICAL DATA CARDS */}
       {phytochemicalsList.length > 0 && (
