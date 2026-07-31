@@ -11,29 +11,61 @@ export default function PlantProfile() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedSmilesIndex, setCopiedSmilesIndex] = useState<number | null>(null);
 
-  // Live web overview state
+// Live web overview & traditional uses state
   const [wikiOverview, setWikiOverview] = useState<string>('');
+  const [wikiUses, setWikiUses] = useState<string[]>([]);
   const [loadingWiki, setLoadingWiki] = useState<boolean>(false);
 
   // Dynamic Lookup across all species in data.ts
   const plant = mockPlants.find((p) => String(p.id) === String(id)) || mockPlants[0];
 
-  // Dynamically fetch exact botanical data from Wikipedia API using scientific name
+  // Dynamically fetch exact botanical data AND traditional uses from Wikipedia
   useEffect(() => {
     if (!plant?.scientificName) return;
 
-    // Clean up scientific name (remove extra authority citations if present)
     const cleanScientificName = plant.scientificName.split(' ')[0] + ' ' + (plant.scientificName.split(' ')[1] || '');
-
     setLoadingWiki(true);
-    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanScientificName)}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
+
+    // Fetch full plain-text Wikipedia article
+    fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&format=json&origin=*&titles=${encodeURIComponent(cleanScientificName)}`)
+      .then((res) => res.json())
       .then((data) => {
-        if (data.extract) {
-          setWikiOverview(data.extract);
+        const pages = data?.query?.pages;
+        if (!pages) return;
+        
+        const pageKey = Object.keys(pages)[0];
+        const fullText: string = pages[pageKey]?.extract || '';
+
+        if (fullText) {
+          // 1. Extract Overview (Lead section before first '==')
+          const introText = fullText.split('\n==')[0].trim();
+          setWikiOverview(introText || `${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
+
+          // 2. Extract Traditional Uses section or medicinal sentences
+          const usesMatch = fullText.match(/==\s*(Traditional medicine|Medicinal uses|Uses|Ethnobotany|Medical uses)\s*==([\s\S]*?)(==|$)/i);
+          
+          let parsedUses: string[] = [];
+
+          if (usesMatch && usesMatch[2]) {
+            // Clean up lines under the section
+            parsedUses = usesMatch[2]
+              .split('\n')
+              .map(line => line.replace(/^[*=-]\s*/, '').trim())
+              .filter(line => line.length > 20 && !line.startsWith('='))
+              .slice(0, 4);
+          }
+
+          // Fallback: If no dedicated 'Uses' heading exists, extract sentences mentioning medicinal/traditional uses
+          if (parsedUses.length === 0) {
+            const sentences = fullText.split(/(?<=[.!?])\s+/);
+            parsedUses = sentences.filter(s => 
+              /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer/i.test(s) &&
+              s.length > 25 &&
+              !s.startsWith('=')
+            ).slice(0, 3);
+          }
+
+          setWikiUses(parsedUses);
         } else {
           setWikiOverview(`${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
         }
@@ -246,18 +278,29 @@ export default function PlantProfile() {
 
       </div>
 
-      {/* TRADITIONAL USES */}
-      {plant.traditionalUses && plant.traditionalUses.length > 0 && (
+{/* TRADITIONAL USES */}
+      {((plant.traditionalUses && plant.traditionalUses.length > 0) || wikiUses.length > 0) && (
         <div className="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 text-left space-y-4">
           <h2 className="text-lg font-bold text-white tracking-wide">Traditional Uses</h2>
-          <ul className="space-y-2.5 text-stone-300 text-sm">
-            {plant.traditionalUses.map((use: string, idx: number) => (
-              <li key={idx} className="flex items-start space-x-3">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
-                <span>{use}</span>
-              </li>
-            ))}
-          </ul>
+          
+          {loadingWiki && (!plant.traditionalUses || plant.traditionalUses.length === 0) ? (
+            <div className="flex items-center space-x-2 text-stone-400 text-sm py-2">
+              <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
+              <span>Extracting traditional uses from botanical archives...</span>
+            </div>
+          ) : (
+            <ul className="space-y-2.5 text-stone-300 text-sm">
+              {((plant.traditionalUses && plant.traditionalUses.length > 0) 
+                ? plant.traditionalUses 
+                : wikiUses
+              ).map((use: string, idx: number) => (
+                <li key={idx} className="flex items-start space-x-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
+                  <span>{use}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
