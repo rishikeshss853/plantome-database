@@ -147,7 +147,7 @@ export default function Layout() {
     Ms. LAKSHMI SUNDEEP (Assistant Professor)
   </span>
   <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 border border-emerald-300 dark:border-emerald-700 text-emerald-900 dark:text-emerald-200 font-semibold">
-    Dr. PINNE J SANDHYA (Assistant Professor)
+    Dr. J SANDHYA (Assistant Professor)
   </span>
 
   {/* Student Team */}
