@@ -141,20 +141,29 @@ export default function Layout() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 text-xs">
-            <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
-              VARSHINI S
-            </span>
-            <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
-              RISHIKESH S S
-            </span>
-            <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
-              PRADESH K
-            </span>
-            <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
-              ROHIT
-            </span>
-          </div>
+<div className="flex flex-wrap justify-center gap-2 text-xs">
+  {/* Faculty Coordinators */}
+  <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 border border-emerald-300 dark:border-emerald-700 text-emerald-900 dark:text-emerald-200 font-semibold">
+    Ms. LAKSHMI SUNDEEP (Assistant Professor)
+  </span>
+  <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 border border-emerald-300 dark:border-emerald-700 text-emerald-900 dark:text-emerald-200 font-semibold">
+    Dr. PINNE J SANDHYA (Assistant Professor)
+  </span>
+
+  {/* Student Team */}
+  <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
+    VARSHINI S
+  </span>
+  <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
+    RISHIKESH S S
+  </span>
+  <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
+    PRADESH K
+  </span>
+  <span className="px-3 py-1 rounded-full bg-stone-200 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-emerald-800 dark:text-emerald-300 font-semibold">
+    ROHIT
+  </span>
+</div>
 
           <p className="text-xs text-stone-500">
             &copy; {new Date().getFullYear()} All Rights Reserved.
