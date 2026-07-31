@@ -11,7 +11,7 @@ export default function PlantProfile() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedSmilesIndex, setCopiedSmilesIndex] = useState<number | null>(null);
 
-// Live web overview & traditional uses state
+  // Live web overview & traditional uses state
   const [wikiOverview, setWikiOverview] = useState<string>('');
   const [wikiUses, setWikiUses] = useState<string[]>([]);
   const [loadingWiki, setLoadingWiki] = useState<boolean>(false);
@@ -19,61 +19,89 @@ export default function PlantProfile() {
   // Dynamic Lookup across all species in data.ts
   const plant = mockPlants.find((p) => String(p.id) === String(id)) || mockPlants[0];
 
-  // Dynamically fetch exact botanical data AND traditional uses from Wikipedia
-  useEffect(() => {
-    if (!plant?.scientificName) return;
+  // Helper to extract and clean sections from raw Wikipedia text
+  const parseWikiData = (fullText: string) => {
+    // 1. Overview: Intro paragraph before the first section heading
+    const introText = fullText.split(/\n={2,4}/)[0].trim();
+    const cleanOverview = introText.replace(/\[\d+\]/g, '').trim();
 
-    const cleanScientificName = plant.scientificName.split(' ')[0] + ' ' + (plant.scientificName.split(' ')[1] || '');
+    // 2. Traditional / Medicinal Uses: Match flexible header levels (==, ===, ====)
+    const usesRegex = /(?:={2,4})\s*(Traditional medicine|Medicinal uses|Medicinal|Uses|Ethnobotany|Medical uses|Traditional uses|Ayurvedic uses|Herbal medicine)\s*(?:={2,4})([\s\S]*?)(?=\n={2,4}\s*[^=]|$)/i;
+    const usesMatch = fullText.match(usesRegex);
+
+    let parsedUses: string[] = [];
+
+    if (usesMatch && usesMatch[2]) {
+      parsedUses = usesMatch[2]
+        .split('\n')
+        .map((line) => line.replace(/^[*=-]\s*/, '').replace(/\[\d+\]/g, '').trim())
+        .filter((line) => line.length > 20 && !line.startsWith('='))
+        .slice(0, 5);
+    }
+
+    // Fallback: If no dedicated heading exists, pull sentences containing medicinal keywords
+    if (parsedUses.length === 0) {
+      const sentences = fullText.replace(/\[\d+\]/g, '').split(/(?<=[.!?])\s+/);
+      parsedUses = sentences
+        .filter((s) => 
+          /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer|antioxidant/i.test(s) &&
+          s.length > 30 &&
+          !s.startsWith('=')
+        )
+        .slice(0, 4);
+    }
+
+    return { cleanOverview, parsedUses };
+  };
+
+  // Fetch Wikipedia data with automatic redirects & title fallback
+  useEffect(() => {
+    if (!plant?.scientificName && !plant?.commonName) return;
+
     setLoadingWiki(true);
 
-    // Fetch full plain-text Wikipedia article
-    fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&format=json&origin=*&titles=${encodeURIComponent(cleanScientificName)}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const pages = data?.query?.pages;
-        if (!pages) return;
-        
-        const pageKey = Object.keys(pages)[0];
-        const fullText: string = pages[pageKey]?.extract || '';
+    const cleanScientific = plant.scientificName 
+      ? plant.scientificName.split(' ')[0] + ' ' + (plant.scientificName.split(' ')[1] || '')
+      : '';
 
-        if (fullText) {
-          // 1. Extract Overview (Lead section before first '==')
-          const introText = fullText.split('\n==')[0].trim();
-          setWikiOverview(introText || `${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
+    const fetchWikiPage = async (title: string) => {
+      const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&format=json&origin=*&redirects=1&titles=${encodeURIComponent(title)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const pages = data?.query?.pages;
 
-          // 2. Extract Traditional Uses section or medicinal sentences
-          const usesMatch = fullText.match(/==\s*(Traditional medicine|Medicinal uses|Uses|Ethnobotany|Medical uses)\s*==([\s\S]*?)(==|$)/i);
-          
-          let parsedUses: string[] = [];
+      if (!pages) return null;
+      const pageKey = Object.keys(pages)[0];
+      if (pageKey === '-1') return null; // Page not found
 
-          if (usesMatch && usesMatch[2]) {
-            // Clean up lines under the section
-            parsedUses = usesMatch[2]
-              .split('\n')
-              .map(line => line.replace(/^[*=-]\s*/, '').trim())
-              .filter(line => line.length > 20 && !line.startsWith('='))
-              .slice(0, 4);
-          }
+      return pages[pageKey]?.extract || null;
+    };
 
-          // Fallback: If no dedicated 'Uses' heading exists, extract sentences mentioning medicinal/traditional uses
-          if (parsedUses.length === 0) {
-            const sentences = fullText.split(/(?<=[.!?])\s+/);
-            parsedUses = sentences.filter(s => 
-              /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer/i.test(s) &&
-              s.length > 25 &&
-              !s.startsWith('=')
-            ).slice(0, 3);
-          }
+    const loadData = async () => {
+      try {
+        // Step 1: Try Scientific Name
+        let rawText = cleanScientific ? await fetchWikiPage(cleanScientific) : null;
 
-          setWikiUses(parsedUses);
+        // Step 2: Fallback to Common Name if Scientific Name missed
+        if (!rawText && plant.commonName) {
+          rawText = await fetchWikiPage(plant.commonName);
+        }
+
+        if (rawText) {
+          const { cleanOverview, parsedUses } = parseWikiData(rawText);
+          if (cleanOverview) setWikiOverview(cleanOverview);
+          if (parsedUses.length > 0) setWikiUses(parsedUses);
         } else {
           setWikiOverview(`${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
         }
-      })
-      .catch(() => {
+      } catch (err) {
         setWikiOverview(`${plant.commonName} (${plant.scientificName}) is a cataloged botanical specimen in the HITS Department of Biotechnology campus database.`);
-      })
-      .finally(() => setLoadingWiki(false));
+      } finally {
+        setLoadingWiki(false);
+      }
+    };
+
+    loadData();
   }, [plant?.scientificName, plant?.commonName]);
 
   if (!plant) {
@@ -156,13 +184,9 @@ export default function PlantProfile() {
     };
   };
 
-  // Standardize plant image source
   const plantImg = plant.image || plant.imageUrl || 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80';
-
-  // Extract phytochemical array safely regardless of Excel column naming
   const phytochemicalsList: any[] = plant.phytochemicals || plant.metabolites || [];
 
-  // Determine botanical overview: use custom Excel description if present, otherwise live fetched overview
   const overviewDisplay = (plant.description && !plant.description.includes('Cataloged campus species')) 
     ? plant.description 
     : wikiOverview;
@@ -278,8 +302,8 @@ export default function PlantProfile() {
 
       </div>
 
-{/* TRADITIONAL USES */}
-      {((plant.traditionalUses && plant.traditionalUses.length > 0) || wikiUses.length > 0) && (
+      {/* TRADITIONAL USES */}
+      {((plant.traditionalUses && plant.traditionalUses.length > 0) || wikiUses.length > 0 || loadingWiki) && (
         <div className="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 text-left space-y-4">
           <h2 className="text-lg font-bold text-white tracking-wide">Traditional Uses</h2>
           
@@ -365,7 +389,6 @@ export default function PlantProfile() {
                       <span className="text-stone-800 dark:text-stone-200 font-medium">{location}</span>
                     </div>
 
-                    {/* PubChem Row with Auto-Search Fallback */}
                     <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400">
                       <span>PubChem ID:</span>
                       {hasValidPubChem ? (
@@ -392,7 +415,6 @@ export default function PlantProfile() {
                       )}
                     </div>
 
-                    {/* SMILES Section */}
                     {hasValidSmiles ? (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-[11px] text-stone-500 dark:text-stone-400">
@@ -420,7 +442,6 @@ export default function PlantProfile() {
                     )}
                   </div>
 
-                  {/* Activities Tags */}
                   {activities.length > 0 && (
                     <div className="pt-2 border-t border-stone-200 dark:border-stone-800 space-y-1.5">
                       <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Activities:</span>
