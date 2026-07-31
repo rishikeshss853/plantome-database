@@ -22,29 +22,29 @@ export default function PlantProfile() {
   // Helper to extract and clean sections from raw Wikipedia text
   const parseWikiData = (fullText: string) => {
     // 1. Overview: Intro paragraph before the first section heading
-    const introText = fullText.split(/\n={2,4}/)[0].trim();
+    const introText = fullText.split(/\n={2,5}/)[0].trim();
     const cleanOverview = introText.replace(/\[\d+\]/g, '').trim();
 
-    // 2. Traditional / Medicinal Uses: Match flexible header levels (==, ===, ====)
-    const usesRegex = /(?:={2,4})\s*(Traditional medicine|Medicinal uses|Medicinal|Uses|Ethnobotany|Medical uses|Traditional uses|Ayurvedic uses|Herbal medicine)\s*(?:={2,4})([\s\S]*?)(?=\n={2,4}\s*[^=]|$)/i;
+    // 2. Traditional / Medicinal Uses: Expanded flexible header matching (==, ===, ====)
+    const usesRegex = /(?:={2,5})\s*(Traditional medicine|Medicinal uses|Medicinal|Uses|Ethnobotany|Medical uses|Traditional uses|Ayurvedic uses|Herbal medicine|Folk medicine|Culinary and medicinal uses|Pharmacology)\s*(?:={2,5})([\s\S]*?)(?=\n={2,5}\s*[^=]|$)/i;
     const usesMatch = fullText.match(usesRegex);
 
     let parsedUses: string[] = [];
 
     if (usesMatch && usesMatch[2]) {
       parsedUses = usesMatch[2]
-        .split('\n')
+        .split(/(?:\n+|\.\s+)/)
         .map((line) => line.replace(/^[*=-]\s*/, '').replace(/\[\d+\]/g, '').trim())
-        .filter((line) => line.length > 20 && !line.startsWith('='))
+        .filter((line) => line.length > 25 && !line.startsWith('='))
         .slice(0, 5);
     }
 
-    // Fallback: If no dedicated heading exists, pull sentences containing medicinal keywords
+    // Fallback: Scan full article for medicinal keywords if no explicit section exists
     if (parsedUses.length === 0) {
       const sentences = fullText.replace(/\[\d+\]/g, '').split(/(?<=[.!?])\s+/);
       parsedUses = sentences
         .filter((s) => 
-          /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer|antioxidant/i.test(s) &&
+          /traditional|medicinal|ayurveda|siddha|remedy|treatment|herb|disease|fever|skin|cough|wound|ulcer|antioxidant|tonic|decoction/i.test(s) &&
           s.length > 30 &&
           !s.startsWith('=')
         )
@@ -72,17 +72,15 @@ export default function PlantProfile() {
 
       if (!pages) return null;
       const pageKey = Object.keys(pages)[0];
-      if (pageKey === '-1') return null; // Page not found
+      if (pageKey === '-1') return null;
 
       return pages[pageKey]?.extract || null;
     };
 
     const loadData = async () => {
       try {
-        // Step 1: Try Scientific Name
         let rawText = cleanScientific ? await fetchWikiPage(cleanScientific) : null;
 
-        // Step 2: Fallback to Common Name if Scientific Name missed
         if (!rawText && plant.commonName) {
           rawText = await fetchWikiPage(plant.commonName);
         }
@@ -112,6 +110,15 @@ export default function PlantProfile() {
       </div>
     );
   }
+
+  // Smart selection logic for Traditional Uses
+  const isPlaceholder = (text: string) => 
+    /documented in hits|department of biotechnology|campus flora catalog/i.test(text);
+
+  const cleanMockUses = (plant.traditionalUses || []).filter((use) => !isPlaceholder(use));
+  
+  // Prefer Wikipedia fetched uses over mock data, discarding placeholders
+  const displayUses = wikiUses.length > 0 ? wikiUses : cleanMockUses;
 
   const livePlantUrl = window.location.href;
   const qrCodeImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(livePlantUrl)}&color=052e16&bgcolor=ffffff`;
@@ -222,7 +229,7 @@ export default function PlantProfile() {
       {/* Main Specimen Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* LEFT: Plant Photo + QR Code Generator Badge */}
+        {/* LEFT: Photo & QR Tag */}
         <div className="lg:col-span-5 space-y-6">
           <div className="relative group rounded-2xl overflow-hidden border border-stone-800 shadow-xl bg-stone-900">
             <img 
@@ -280,7 +287,6 @@ export default function PlantProfile() {
             </p>
           </div>
 
-          {/* Botanical Overview Section */}
           <div className="bg-stone-900/80 rounded-2xl p-5 border border-stone-800 space-y-2">
             <div className="flex items-center space-x-2 text-stone-300 font-semibold text-xs uppercase tracking-wider">
               <BookOpen className="h-4 w-4 text-emerald-400" />
@@ -303,21 +309,18 @@ export default function PlantProfile() {
       </div>
 
       {/* TRADITIONAL USES */}
-      {((plant.traditionalUses && plant.traditionalUses.length > 0) || wikiUses.length > 0 || loadingWiki) && (
+      {(displayUses.length > 0 || loadingWiki) && (
         <div className="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 text-left space-y-4">
           <h2 className="text-lg font-bold text-white tracking-wide">Traditional Uses</h2>
           
-          {loadingWiki && (!plant.traditionalUses || plant.traditionalUses.length === 0) ? (
+          {loadingWiki && displayUses.length === 0 ? (
             <div className="flex items-center space-x-2 text-stone-400 text-sm py-2">
               <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
               <span>Extracting traditional uses from botanical archives...</span>
             </div>
           ) : (
             <ul className="space-y-2.5 text-stone-300 text-sm">
-              {((plant.traditionalUses && plant.traditionalUses.length > 0) 
-                ? plant.traditionalUses 
-                : wikiUses
-              ).map((use: string, idx: number) => (
+              {displayUses.map((use: string, idx: number) => (
                 <li key={idx} className="flex items-start space-x-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
                   <span>{use}</span>
